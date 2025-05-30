@@ -16,17 +16,21 @@ if exercicio in ["Agachamento", "Supino", "Levantamento Terra"]:
     experiencia = st.selectbox("Nível de experiência:", ["Iniciante", "Intermediário", "Avançado"])
     objetivo = st.selectbox("Objetivo principal:", ["Força", "Hipertrofia", "Técnica"])
 
-    if st.button("Gerar Plano"):
-        if exercicio == "Agachamento":
-            frequencia = st.selectbox("Dias por semana (perna):", [1, 2, 3])
-            barra = st.selectbox("Tipo de barra:", ["Livre", "Guiada", "Ambas"])
+    if exercicio == "Agachamento":
+        frequencia = st.selectbox("Dias por semana (perna):", [1, 2, 3])
+        barra = st.selectbox("Tipo de barra:", ["Livre", "Guiada", "Ambas"])
+        if st.button("Gerar Plano"):
             gerar_cartao_agachamento(nome, carga_atual, frequencia, barra, objetivo, experiencia)
-        elif exercicio == "Supino":
+
+    elif exercicio == "Supino":
+        if st.button("Gerar Plano"):
             plano = gerar_cartao_supino(nome, carga_atual, experiencia, objetivo)
             for semana, treino in plano.items():
                 with st.expander(semana):
                     st.write("✅", treino)
-        elif exercicio == "Levantamento Terra":
+
+    elif exercicio == "Levantamento Terra":
+        if st.button("Gerar Plano"):
             plano = gerar_cartao_terra(nome, carga_atual, experiencia, objetivo)
             for semana, treino in plano.items():
                 with st.expander(semana):
